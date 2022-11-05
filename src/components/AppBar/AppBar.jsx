@@ -8,6 +8,7 @@ const AppBar = () => {
           Log in
         </NavLink>
         <NavLink to="register">Register</NavLink>
+        <NavLink to="contacts">My Contscts</NavLink>
       </nav>
     </header>
   );
