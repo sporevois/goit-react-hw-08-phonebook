@@ -16,7 +16,7 @@ const ContatList = () => {
       {error && <b>Request failed with Error code {error.originalStatus}</b>}
       <ul>
         {filteredContacts?.map(({ id, name, number }) => (
-          <ContactItem key={id} data={name} number={number} id={id} />
+          <ContactItem key={id} name={name} number={number} id={id} />
         ))}
       </ul>
     </>
