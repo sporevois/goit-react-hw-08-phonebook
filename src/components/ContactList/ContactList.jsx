@@ -1,6 +1,6 @@
 import { getFilter } from 'redux/selectors';
 import { useSelector } from 'react-redux';
-import { useFetchContactsQuery } from 'redux/contacts/contactsSlice';
+import { useFetchContactsQuery } from 'redux/contacts/contactsApi';
 import { getFilteredContacts } from 'redux/contacts/contactsTools';
 import ContactItem from 'components/ContactItem/ContactItem';
 import { LoaderThreeDots } from 'components/Loader/Loader';

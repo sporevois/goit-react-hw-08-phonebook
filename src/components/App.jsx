@@ -1,20 +1,27 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
+import { useRefreshQuery } from 'redux/user/userApi';
 import Layout from './Layout/Layout';
-// import Contacts from 'pages/Contacts/Contacts';
-// import FormAddContact from './FormAddContact/FormAddContact';
-// import Filter from './Filter/Filter';
-// import ContatList from './ContactList/ContactList';
+import PublicRoute from './PublicRoute/PublicRoute';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const Contacts = lazy(() => import('../pages/Contacts/Contacts'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 
 export const App = () => {
+  useRefreshQuery();
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="login" element={<div>Log In Page</div>} />
-        <Route path="register" element={<div>Register Page</div>} />
-        <Route path="contacts" element={<Contacts />} />
+        <Route element={<PublicRoute />}>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path="contacts" element={<Contacts />} />
+        </Route>
         <Route
           path="*"
           element={
@@ -25,19 +32,5 @@ export const App = () => {
         />
       </Route>
     </Routes>
-
-    // <div
-    //   style={{
-    //     padding: '15px',
-    //     fontSize: '20px',
-    //     color: '#010101',
-    //   }}
-    // >
-    //   <h1>Phonebook</h1>
-    //   <FormAddContact />
-    //   <h2>Contacts</h2>
-    //   <Filter />
-    //   <ContatList />
-    // </div>
   );
 };

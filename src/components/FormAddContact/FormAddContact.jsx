@@ -2,14 +2,14 @@ import { useState } from 'react';
 import {
   useAddContactMutation,
   useFetchContactsQuery,
-} from 'redux/contacts/contactsSlice';
+} from 'redux/contacts/contactsApi';
 import { isDublicate } from 'redux/contacts/contactsTools';
 import { LoaderRotatingLines } from 'components/Loader/Loader';
 import styles from '../FormAddContact/FormAddContact.module.css';
 
 const FormAddContact = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const [addContact, { isLoading, error }] = useAddContactMutation();
   const { data: contacts } = useFetchContactsQuery();
 
@@ -18,9 +18,9 @@ const FormAddContact = () => {
     if (isDublicate(name, contacts)) {
       return alert(`${name} is already in contacts.`);
     }
-    await addContact({ name, phone });
+    await addContact({ name, number });
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   const handleChange = event => {
@@ -28,8 +28,8 @@ const FormAddContact = () => {
     switch (name) {
       case 'name':
         return setName(value);
-      case 'phone':
-        return setPhone(value);
+      case 'number':
+        return setNumber(value);
       default:
         return;
     }
@@ -55,11 +55,11 @@ const FormAddContact = () => {
         <input
           className={styles.field}
           type="tel"
-          name="phone"
+          name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={phone}
+          value={number}
           onChange={handleChange}
         />
       </label>

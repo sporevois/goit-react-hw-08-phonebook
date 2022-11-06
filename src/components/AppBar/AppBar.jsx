@@ -1,16 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import UserMenu from 'components/UserMenu/UserMenu';
+import AuthNav from 'components/AuthNav/AuthNav';
+import useAuth from 'hooks/useAuth';
 
 const AppBar = () => {
-  return (
-    <header>
-      <nav>
-        <NavLink to="login" end>
-          Log in
-        </NavLink>
-        <NavLink to="register">Register</NavLink>
-        <NavLink to="contacts">My Contscts</NavLink>
-      </nav>
-    </header>
-  );
+  const isLogin = useAuth();
+
+  return <header>{isLogin ? <UserMenu /> : <AuthNav />}</header>;
 };
 export default AppBar;

@@ -1,4 +1,4 @@
-import { useDeleteContactMutation } from 'redux/contacts/contactsSlice';
+import { useDeleteContactMutation } from 'redux/contacts/contactsApi';
 import { LoaderRotatingLines } from 'components/Loader/Loader';
 import styles from '../ContactItem/ContactItem.module.css';
 const ContactItem = ({ name, number, id }) => {
