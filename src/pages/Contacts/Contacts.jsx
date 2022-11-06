@@ -11,7 +11,7 @@ const Contacts = () => {
         color: '#010101',
       }}
     >
-      <h1>Phonebook</h1>
+      <h2>Phonebook</h2>
       <FormAddContact />
       <h2>Contacts</h2>
       <Filter />

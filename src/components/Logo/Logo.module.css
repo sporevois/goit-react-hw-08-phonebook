@@ -1,0 +1,8 @@
+.logoFirstPart{
+    color: red;
+    border-bottom: 3px solid black;
+}
+.logoSecondPart{
+    color: black;
+    border-bottom: 3px solid Red;
+}
