@@ -1,8 +1,10 @@
 .logoFirstPart{
+    letter-spacing: 3px;
     color: red;
     border-bottom: 3px solid black;
 }
 .logoSecondPart{
+    letter-spacing: 3px;
     color: black;
     border-bottom: 3px solid Red;
 }
