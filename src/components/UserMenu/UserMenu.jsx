@@ -1,16 +1,24 @@
 import { useLogoutMutation } from 'redux/user/userApi';
-import { getUserEmail } from 'redux/selectors';
+import { getUserName } from 'redux/selectors';
 import { useSelector } from 'react-redux';
+import styles from '../UserMenu/UserMenu.module.css';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const UserMenu = () => {
   const [logout, { isLoading, error }] = useLogoutMutation();
-  const email = useSelector(getUserEmail);
+  const name = useSelector(getUserName);
 
   return (
-    <div>
-      <p>{email}</p>
-      <button type="button" onClick={async () => await logout()}>
-        Log out
+    <div className={styles.userMenu}>
+      <p className={styles.user}>
+        Wellcome back, <span className={styles.userName}>{name}</span> !
+      </p>
+      <button
+        className={styles.btn}
+        type="button"
+        onClick={async () => await logout()}
+      >
+        <LogoutIcon />
       </button>
     </div>
   );

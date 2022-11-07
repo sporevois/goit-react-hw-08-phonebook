@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useUpdateContactMutation } from 'redux/contacts/contactsApi';
-
+import { LoaderRotatingLines } from 'components/Loader/Loader';
 const UpdateForm = ({ name, number, id, stopEdit }) => {
-  const [updateContact] = useUpdateContactMutation();
+  const [updateContact, { isLoading }] = useUpdateContactMutation();
   const [newName, setNewName] = useState(`${name}`);
   const [newNumber, setNewNumber] = useState(`${number}`);
 
@@ -16,8 +16,7 @@ const UpdateForm = ({ name, number, id, stopEdit }) => {
         number: newNumber,
       },
     };
-    console.log(contact.values);
-    console.log(id);
+
     await updateContact(contact);
     stopEdit();
   };
@@ -54,7 +53,16 @@ const UpdateForm = ({ name, number, id, stopEdit }) => {
         required
         onChange={handleChange}
       />
-      <button type="submit">Save</button>
+      <button type="submit" disabled={name === newName && number === newNumber}>
+        {isLoading ? (
+          <span>
+            <LoaderRotatingLines />
+            Saving...
+          </span>
+        ) : (
+          'Save'
+        )}
+      </button>
       <button type="button" onClick={() => stopEdit()}>
         Cancel
       </button>
