@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useLoginMutation } from 'redux/user/userApi';
+import styles from '../LoginForm/LoginForm.module.css';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -26,33 +28,34 @@ const LoginForm = () => {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <h2>Log in</h2>
       <div className="form-body">
         <div className="email">
-          <label className="form__label" htmlFor="email">
+          <label className={styles.formLabel} htmlFor="email">
             Email
-            <input
-              className="form__input"
-              type="email"
-              name="email"
-              value={email}
-              placeholder="Enter user email"
-              onChange={handleChange}
-            />
           </label>
+          <input
+            className={styles.formInput}
+            type="email"
+            name="email"
+            value={email}
+            placeholder="Enter user email"
+            onChange={handleChange}
+          />
         </div>
         <div className="password">
-          <label className="form__label" htmlFor="password">
+          <label className={styles.formLabel} htmlFor="password">
             Password
-            <input
-              className="form__input"
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Password (min 7 symbols)"
-              onChange={handleChange}
-            />
           </label>
+          <input
+            className={styles.formInput}
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password (min 7 symbols)"
+            onChange={handleChange}
+          />
         </div>
       </div>
       <div className="footer">

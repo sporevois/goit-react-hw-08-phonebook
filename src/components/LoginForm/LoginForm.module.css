@@ -1,0 +1,17 @@
+.form{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 320px;
+    padding: 8px;
+    color: white;
+    border: 5px solid white;
+    border-radius: 8px;
+}
+
+.formLabel{
+    margin-right: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}

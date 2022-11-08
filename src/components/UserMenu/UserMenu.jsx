@@ -18,7 +18,7 @@ const UserMenu = () => {
         type="button"
         onClick={async () => await logout()}
       >
-        <LogoutIcon />
+        <LogoutIcon style={{ fill: 'white' }} />
       </button>
     </div>
   );

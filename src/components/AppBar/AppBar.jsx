@@ -3,6 +3,7 @@ import AuthNav from 'components/AuthNav/AuthNav';
 import useAuth from 'hooks/useAuth';
 import Logo from 'components/Logo/Logo';
 import styles from '../AppBar/AppBar.module.css';
+import { NavLink } from 'react-router-dom';
 
 const AppBar = () => {
   const isLogin = useAuth();
@@ -10,7 +11,9 @@ const AppBar = () => {
   return (
     <header className={styles.header}>
       <div className={styles.headerContainer}>
-        <Logo />
+        <NavLink style={{ textDecoration: 'none' }} to="/">
+          <Logo />
+        </NavLink>
         {isLogin ? <UserMenu /> : <AuthNav />}
       </div>
     </header>
