@@ -1,30 +1,21 @@
-// import { useState } from 'react';
+import useGetEdit from 'hooks/useGetEdit';
 import { setEdit } from 'redux/edit/editSlise';
-import { getEditState } from 'redux/selectors';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useDeleteContactMutation } from 'redux/contacts/contactsApi';
-import UpdateForm from 'components/UpdateForm/UpdateForm';
 import { LoaderRotatingLines } from 'components/Loader/Loader';
+import UpdateForm from 'components/UpdateForm/UpdateForm';
 import styles from '../ContactItem/ContactItem.module.css';
 
 const ContactItem = ({ name, number, id }) => {
   const [deleteContact, { isLoading, error }] = useDeleteContactMutation();
-  // const [isEdit, setIsEdit] = useState(false);
-
-  // const startEdit = () => {
-  //   setIsEdit(true);
-  // };
-  // const stopEdit = () => {
-  //   setIsEdit(false);
-  // };
   const dispatch = useDispatch();
-  const isEdit = useSelector(getEditState);
+  const isEdit = useGetEdit();
 
   return (
     <>
       {error && <b>Request failed with Error code {error.originalStatus}</b>}
       <li className={styles.item}>
-        {isEdit ? (
+        {isEdit === id ? (
           <UpdateForm name={name} number={number} id={id} />
         ) : (
           <span>
@@ -32,13 +23,13 @@ const ContactItem = ({ name, number, id }) => {
           </span>
         )}
 
-        {!isEdit && (
+        {isEdit !== id && (
           <span>
             <button
               className={styles.btn}
               type="button"
               onClick={() => deleteContact(id)}
-              disabled={isLoading}
+              disabled={isLoading || isEdit}
             >
               {isLoading ? (
                 <span>
@@ -53,9 +44,8 @@ const ContactItem = ({ name, number, id }) => {
             <button
               className={styles.btn}
               type="button"
-              // onClick={() => startEdit()}
-              onClick={() => dispatch(setEdit(true))}
-              disabled={isLoading}
+              onClick={() => dispatch(setEdit(id))}
+              disabled={isLoading || isEdit}
             >
               Edit
             </button>

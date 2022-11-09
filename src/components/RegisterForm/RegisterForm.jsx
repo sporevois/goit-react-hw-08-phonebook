@@ -1,15 +1,13 @@
-import { useRegisterMutation } from 'redux/user/userApi';
 import { useState } from 'react';
+import { useRegisterMutation } from 'redux/user/userApi';
+import { LoaderRotatingLines } from 'components/Loader/Loader';
 import styles from '../LoginForm/LoginForm.module.css';
 
 const RegistrationForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [
-    register,
-    // { isLoading, error }
-  ] = useRegisterMutation();
+  const [register, { isLoading, error }] = useRegisterMutation();
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -77,7 +75,13 @@ const RegistrationForm = () => {
       </div>
       <button className={styles.btn} type="submit">
         Register
+        {isLoading && <LoaderRotatingLines />}
       </button>
+      {error && (
+        <p className={styles.error}>
+          Wrong input data, or user is already exists
+        </p>
+      )}
     </form>
   );
 };

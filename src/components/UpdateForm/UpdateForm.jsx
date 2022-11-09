@@ -3,8 +3,10 @@ import { setEdit } from 'redux/edit/editSlise';
 import { useDispatch } from 'react-redux';
 import { useUpdateContactMutation } from 'redux/contacts/contactsApi';
 import { LoaderRotatingLines } from 'components/Loader/Loader';
+import styles from '../UpdateForm/UpdateForm.module.css';
+
 const UpdateForm = ({ name, number, id }) => {
-  const [updateContact, { isLoading }] = useUpdateContactMutation();
+  const [updateContact, { isLoading, error }] = useUpdateContactMutation();
   const [newName, setNewName] = useState(`${name}`);
   const [newNumber, setNewNumber] = useState(`${number}`);
   const dispatch = useDispatch();
@@ -21,8 +23,7 @@ const UpdateForm = ({ name, number, id }) => {
     };
 
     await updateContact(contact);
-    // stopEdit();
-    dispatch(setEdit(false));
+    dispatch(setEdit(null));
   };
 
   const handleChange = event => {
@@ -38,8 +39,9 @@ const UpdateForm = ({ name, number, id }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <input
+        className={styles.field}
         type="text"
         name="newName"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -49,6 +51,7 @@ const UpdateForm = ({ name, number, id }) => {
         onChange={handleChange}
       />
       <input
+        className={styles.field}
         type="tel"
         name="newNumber"
         value={newNumber}
@@ -57,19 +60,30 @@ const UpdateForm = ({ name, number, id }) => {
         required
         onChange={handleChange}
       />
-      <button type="submit" disabled={name === newName && number === newNumber}>
-        {isLoading ? (
-          <span>
-            <LoaderRotatingLines />
-            Saving...
-          </span>
-        ) : (
-          'Save'
-        )}
-      </button>
-      <button type="button" onClick={() => dispatch(setEdit(false))}>
-        Cancel
-      </button>
+      <div className={styles.wrapper}>
+        <button
+          className={styles.btn}
+          type="submit"
+          disabled={name === newName && number === newNumber}
+        >
+          {isLoading ? (
+            <span>
+              <LoaderRotatingLines />
+              Saving...
+            </span>
+          ) : (
+            'Save'
+          )}
+        </button>
+        <button
+          className={styles.btn}
+          type="button"
+          onClick={() => dispatch(setEdit(null))}
+        >
+          Cancel
+        </button>
+      </div>
+      {error && <p className={styles.error}>Something gone wrong</p>}
     </form>
   );
 };

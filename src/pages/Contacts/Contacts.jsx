@@ -7,9 +7,7 @@ const Contacts = () => {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <h2>Phonebook</h2>
         <FormAddContact />
-        <h2>Contacts</h2>
         <Filter />
         <ContatList />
       </div>

@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { useLoginMutation } from 'redux/user/userApi';
+import { LoaderRotatingLines } from 'components/Loader/Loader';
 import styles from '../LoginForm/LoginForm.module.css';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [
-    login,
-    // { isLoading, error }
-  ] = useLoginMutation();
+  const [login, { isLoading, error }] = useLoginMutation();
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -60,7 +58,9 @@ const LoginForm = () => {
       </div>
       <button type="submit" className={styles.btn}>
         Login
+        {isLoading && <LoaderRotatingLines />}
       </button>
+      {error && <p className={styles.error}>Wrong email or password</p>}
     </form>
   );
 };

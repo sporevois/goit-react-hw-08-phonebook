@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const editSlice = createSlice({
     name: "edit",
-    initialState: false,
+    initialState: null,
     reducers: {
         setEdit: (_, {payload}) => payload
     },

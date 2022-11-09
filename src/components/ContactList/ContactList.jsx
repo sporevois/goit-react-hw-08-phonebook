@@ -1,17 +1,18 @@
-import { getFilter } from 'redux/selectors';
-import { useSelector } from 'react-redux';
+import useFilter from 'hooks/useFilter';
 import { useFetchContactsQuery } from 'redux/contacts/contactsApi';
 import { getFilteredContacts } from 'redux/contacts/contactsTools';
-import ContactItem from 'components/ContactItem/ContactItem';
 import { LoaderThreeDots } from 'components/Loader/Loader';
+import ContactItem from 'components/ContactItem/ContactItem';
+import styles from '../ContactList/ContactList.module.css';
 
 const ContatList = () => {
   const { data: contacts, isLoading, error } = useFetchContactsQuery();
-  const filter = useSelector(getFilter);
+  const filter = useFilter();
   const filteredContacts = getFilteredContacts(contacts, filter);
 
   return (
     <>
+      <h2 className={styles.title}>Contacts</h2>
       {isLoading && <LoaderThreeDots />}
       {error && <b>Request failed with Error code {error.originalStatus}</b>}
       <ul>
