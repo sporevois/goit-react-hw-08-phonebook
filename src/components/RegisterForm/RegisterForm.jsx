@@ -6,7 +6,10 @@ const RegistrationForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [register, { isLoading, error }] = useRegisterMutation();
+  const [
+    register,
+    // { isLoading, error }
+  ] = useRegisterMutation();
 
   const handleSubmit = async event => {
     event.preventDefault();

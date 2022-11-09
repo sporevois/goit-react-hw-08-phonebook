@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
 import { useLoginMutation } from 'redux/user/userApi';
 import styles from '../LoginForm/LoginForm.module.css';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [login, { isLoading, error }] = useLoginMutation();
+  const [
+    login,
+    // { isLoading, error }
+  ] = useLoginMutation();
 
   const handleSubmit = async event => {
     event.preventDefault();

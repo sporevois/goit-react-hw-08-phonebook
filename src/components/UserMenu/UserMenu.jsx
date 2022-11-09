@@ -5,7 +5,10 @@ import styles from '../UserMenu/UserMenu.module.css';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 const UserMenu = () => {
-  const [logout, { isLoading, error }] = useLogoutMutation();
+  const [
+    logout,
+    // { isLoading, error }
+  ] = useLogoutMutation();
   const name = useSelector(getUserName);
 
   return (
