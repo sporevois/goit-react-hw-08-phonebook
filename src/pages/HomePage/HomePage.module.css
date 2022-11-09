@@ -1,7 +1,9 @@
 .container{
+    z-index: 0;
     height: 100vh;
-    background-image: url(../HomePage/home-background.webp);
+    background-color:darkturquoise;
+    background-image: url(../../images/home-background.webp);
     background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
+    background-position: center;
+    background-size: cover;
 }

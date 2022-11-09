@@ -29,40 +29,36 @@ const LoginForm = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>Log in</h2>
-      <div className="form-body">
-        <div className="email">
-          <label className={styles.formLabel} htmlFor="email">
-            Email
-          </label>
-          <input
-            className={styles.formInput}
-            type="email"
-            name="email"
-            value={email}
-            placeholder="Enter user email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="password">
-          <label className={styles.formLabel} htmlFor="password">
-            Password
-          </label>
-          <input
-            className={styles.formInput}
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Password (min 7 symbols)"
-            onChange={handleChange}
-          />
-        </div>
+      <p className={styles.title}>Log in</p>
+      <div className={styles.wrapper}>
+        <label className={styles.formLabel} htmlFor="email">
+          Email
+        </label>
+        <input
+          className={styles.formInput}
+          type="email"
+          name="email"
+          value={email}
+          placeholder="Enter user email"
+          onChange={handleChange}
+        />
       </div>
-      <div className="footer">
-        <button type="submit" className="btn">
-          Login
-        </button>
+      <div className={styles.wrapper}>
+        <label className={styles.formLabel} htmlFor="password">
+          Password
+        </label>
+        <input
+          className={styles.formInput}
+          type="password"
+          name="password"
+          value={password}
+          placeholder="Password (min 7 symbols)"
+          onChange={handleChange}
+        />
       </div>
+      <button type="submit" className={styles.btn}>
+        Login
+      </button>
     </form>
   );
 };

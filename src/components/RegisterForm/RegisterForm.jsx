@@ -1,5 +1,6 @@
 import { useRegisterMutation } from 'redux/user/userApi';
 import { useState } from 'react';
+import styles from '../LoginForm/LoginForm.module.css';
 
 const RegistrationForm = () => {
   const [name, setName] = useState('');
@@ -30,53 +31,50 @@ const RegistrationForm = () => {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <div className="form-body">
-        <div className="username">
-          <label className="form__label" htmlFor="name">
-            Name
-            <input
-              className="form__input"
-              type="text"
-              name="name"
-              value={name}
-              placeholder="Enter user name"
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <div className="email">
-          <label className="form__label" htmlFor="email">
-            Email
-            <input
-              className="form__input"
-              type="email"
-              name="email"
-              value={email}
-              placeholder="Enter user email"
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <div className="password">
-          <label className="form__label" htmlFor="password">
-            Password
-            <input
-              className="form__input"
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Password (min 7 symbols)"
-              onChange={handleChange}
-            />
-          </label>
-        </div>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <p className={styles.title}>Register</p>
+      <div className={styles.wrapper}>
+        <label className={styles.formLabel} htmlFor="name">
+          Name
+        </label>
+        <input
+          className="form__input"
+          type="text"
+          name="name"
+          value={name}
+          placeholder="Enter user name"
+          onChange={handleChange}
+        />
       </div>
-      <div className="footer">
-        <button type="submit" className="btn">
-          Register
-        </button>
+      <div className={styles.wrapper}>
+        <label className={styles.formLabel} htmlFor="email">
+          Email
+        </label>
+        <input
+          className="form__input"
+          type="email"
+          name="email"
+          value={email}
+          placeholder="Enter user email"
+          onChange={handleChange}
+        />
       </div>
+      <div className={styles.wrapper}>
+        <label className={styles.formLabel} htmlFor="password">
+          Password
+        </label>
+        <input
+          className="form__input"
+          type="password"
+          name="password"
+          value={password}
+          placeholder="Password (min 7 symbols)"
+          onChange={handleChange}
+        />
+      </div>
+      <button className={styles.btn} type="submit">
+        Register
+      </button>
     </form>
   );
 };

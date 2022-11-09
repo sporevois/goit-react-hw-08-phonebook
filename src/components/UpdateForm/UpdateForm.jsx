@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { setEdit } from 'redux/edit/editSlise';
+import { useDispatch } from 'react-redux';
 import { useUpdateContactMutation } from 'redux/contacts/contactsApi';
 import { LoaderRotatingLines } from 'components/Loader/Loader';
-const UpdateForm = ({ name, number, id, stopEdit }) => {
+const UpdateForm = ({ name, number, id }) => {
   const [updateContact, { isLoading }] = useUpdateContactMutation();
   const [newName, setNewName] = useState(`${name}`);
   const [newNumber, setNewNumber] = useState(`${number}`);
+  const dispatch = useDispatch();
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -18,7 +21,8 @@ const UpdateForm = ({ name, number, id, stopEdit }) => {
     };
 
     await updateContact(contact);
-    stopEdit();
+    // stopEdit();
+    dispatch(setEdit(false));
   };
 
   const handleChange = event => {
@@ -63,7 +67,7 @@ const UpdateForm = ({ name, number, id, stopEdit }) => {
           'Save'
         )}
       </button>
-      <button type="button" onClick={() => stopEdit()}>
+      <button type="button" onClick={() => dispatch(setEdit(false))}>
         Cancel
       </button>
     </form>

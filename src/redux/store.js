@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { filterReducer } from "./filter/filterSlice";
+import { editReducer } from "./edit/editSlise";
 import { contactsApi } from "./contacts/contactsApi";
 import { userApi } from "./user/userApi";
 import { persistedReducer } from "./user/authSlice";
@@ -20,6 +21,7 @@ export const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     [contactsApi.reducerPath]: contactsApi.reducer,
     filter: filterReducer,
+    edit: editReducer,
     auth: persistedReducer,
   },
   middleware: getDefaultMiddleware => [
