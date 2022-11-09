@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgoit_react_hw_08_phonebook=self.webpackChunkgoit_react_hw_08_phonebook||[]).push([[610],{5610:function(e,t,n){n.r(t),n.d(t,{default:function(){return a}});var o="GreetMessage_container__FtTZM",s="GreetMessage_message__esRr2",r=n(184),c=function(){return(0,r.jsx)("div",{className:o,children:(0,r.jsx)("p",{className:s,children:'Welcome to online contact storage! We hope this application will be useful for you. Click "LOGIN" or "REGISTER" to enter.'})})},a=function(){return(0,r.jsx)(c,{})}}}]);
+//# sourceMappingURL=610.e2127eb0.chunk.js.map
