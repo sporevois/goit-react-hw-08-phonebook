@@ -1,13 +1,12 @@
-.container{
+.container {
     position: absolute;
-    top:57px;
+    top: 57px;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     background-image: url(../../images/phone6.png), linear-gradient(to right, #33ccff 0%, #66ffcc 122%);
     background-repeat: no-repeat;
-    background-position:center;
+    background-position: center;
     background-size: cover;
 }
-

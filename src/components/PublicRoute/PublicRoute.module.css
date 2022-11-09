@@ -1,8 +1,8 @@
-.container{
+.container {
     display: block;
     z-index: 0;
     height: 92vh;
-    background-color:darkturquoise;
+    background-color: darkturquoise;
     background-image: url(../../images/home-background.webp);
     background-repeat: no-repeat;
     background-position: center;
