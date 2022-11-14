@@ -1,18 +1,27 @@
 import { useState } from 'react';
 import { setEdit } from 'redux/edit/editSlise';
 import { useDispatch } from 'react-redux';
-import { useUpdateContactMutation } from 'redux/contacts/contactsApi';
+import {
+  useUpdateContactMutation,
+  useFetchContactsQuery,
+} from 'redux/contacts/contactsApi';
+import { isDublicate } from 'redux/contacts/contactsTools';
 import { LoaderRotatingLines } from 'components/Loader/Loader';
 import styles from '../UpdateForm/UpdateForm.module.css';
 
 const UpdateForm = ({ name, number, id }) => {
   const [updateContact, { isLoading, error }] = useUpdateContactMutation();
+  const { data: contacts } = useFetchContactsQuery();
   const [newName, setNewName] = useState(`${name}`);
   const [newNumber, setNewNumber] = useState(`${number}`);
   const dispatch = useDispatch();
 
   const handleSubmit = async event => {
     event.preventDefault();
+
+    if (isDublicate(newName, contacts)) {
+      return alert(`${newName} is already in contacts.`);
+    }
 
     const contact = {
       id,

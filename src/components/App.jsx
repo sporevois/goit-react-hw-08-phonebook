@@ -11,28 +11,32 @@ const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 
 export const App = () => {
-  useRefreshQuery();
+  const { isLoading } = useRefreshQuery();
 
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route element={<PublicRoute />}>
-          <Route index element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
-        </Route>
-        <Route element={<PrivateRoute />}>
-          <Route path="contacts" element={<Contacts />} />
-        </Route>
-        <Route
-          path="*"
-          element={
-            <div>
-              <h4>Sorry, page not found</h4>
-            </div>
-          }
-        />
-      </Route>
-    </Routes>
+    <>
+      {!isLoading && (
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route element={<PublicRoute />}>
+              <Route index element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="register" element={<RegisterPage />} />
+            </Route>
+            <Route element={<PrivateRoute />}>
+              <Route path="contacts" element={<Contacts />} />
+            </Route>
+            <Route
+              path="*"
+              element={
+                <div>
+                  <h4>Sorry, page not found</h4>
+                </div>
+              }
+            />
+          </Route>
+        </Routes>
+      )}
+    </>
   );
 };

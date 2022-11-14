@@ -11,8 +11,6 @@ const LoginForm = () => {
   const handleSubmit = async event => {
     event.preventDefault();
     await login({ email, password });
-    setEmail('');
-    setPassword('');
   };
 
   const handleChange = event => {
